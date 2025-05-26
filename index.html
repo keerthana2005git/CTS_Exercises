@@ -23,7 +23,7 @@
         <div class="container">
             <ul>
                 <li><a href="#home">Home</a></li>
-                <li><a href="#events">Events</a></li>
+                <li><a href="#events-display-section">Events</a></li>
                 <li><a href="#register-form">Register</a></li>
                 <li><a href="#">Services</a></li>
                 <li><a href="#feedback-form">Feedback</a></li>
@@ -61,16 +61,17 @@
         <section id="find-events-section">
             <h2>Find Events</h2>
             <div class="search-form-wrapper">
-                <input type="text" placeholder="Search events..." class="form-input">
-                <select class="form-input">
-                    <option value="">Select Location</option>
-                    <option value="central">Central District</option>
-                    <option value="north">Northside</option>
-                    <option value="south">Southside</option>
-                    <option value="east">East Borough</option>
-                    <option value="west">West End</option>
+                <input type="text" id="searchEventInput" placeholder="Search events..." class="form-input">
+                <select id="filterCategorySelect" class="form-input">
+                    <option value="">All Categories</option>
+                    <option value="Community">Community</option>
+                    <option value="Music">Music</option>
+                    <option value="Art">Art</option>
+                    <option value="Sports">Sports</option>
+                    <option value="Food">Food</option>
+                    <option value="Technology">Technology</option>
                 </select>
-                <button class="action-button">Search</button>
+                <button id="applyFilterButton" class="action-button">Apply Filter</button>
             </div>
         </section>
 
@@ -96,98 +97,11 @@
             </div>
         </section>
 
-        <section id="upcoming-events">
+        <section id="events-display-section">
             <h2>Upcoming Events</h2>
-            <div class="event-cards-grid">
-                <div class="event-card">
-                    <figure>
-                        <img src="summer.img" alt="Summer Concert" title="Annual Summer Concert Series" class="image-border">
-                        <figcaption>Summer Concert Series - Every Friday in July!</figcaption>
-                    </figure>
-                    <p>Enjoy live music under the stars. Family-friendly event.</p>
-                    <a href="#" class="action-button">View Details</a>
+            <div id="loadingSpinner" class="loading-spinner"></div>
+            <div id="eventCardsContainer" class="event-cards-grid">
                 </div>
-
-                <div class="event-card">
-                    <figure>
-                        <img src="foodtruck.img" alt="Food Truck Rally" title="Annual Food Truck Rally" class="image-border">
-                        <figcaption>Food Truck Rally - Taste the best local eats.</figcaption>
-                    </figure>
-                    <p>A variety of food trucks, live entertainment, and fun activities.</p>
-                    <a href="#" class="action-button">Explore Menus</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="register-events">
-            <h2>Register for Events</h2>
-            <div class="event-cards-grid">
-                <div class="event-card">
-                    <figure>
-                        <img src="workshop.img" alt="Workshop Sign-up" title="Register for Workshops" class="image-border">
-                        <figcaption>Don't miss out! Register for our popular workshops.</figcaption>
-                    </figure>
-                    <p>Hands-on workshops for all skill levels. Limited spots available!</p>
-                    <a href="#register-form" class="action-button">Sign Up Now</a>
-                </div>
-
-                <div class="event-card">
-                    <figure>
-                        <img src="volunteer.img" alt="Volunteer Drive" title="Volunteer Opportunity" class="image-border">
-                        <figcaption>Make a difference in your community. Join our volunteer team.</figcaption>
-                    </figure>
-                    <p>Make a difference in your community. Join our volunteer team.</p>
-                    <a href="#register-form" class="action-button">Become a Volunteer</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="events">
-            <h2>Past Event Highlights</h2>
-            <table class="event-table">
-                <tbody>
-                    <tr>
-                        <td>
-                            <figure>
-                                <img src="fair.img" alt="Community Fair" title="Annual Community Fair" class="image-border" ondblclick="enlargeImage(this)">
-                                <figcaption>Annual Community Fair - Fun for all ages!</figcaption>
-                            </figure>
-                        </td>
-                        <td>
-                            <figure>
-                                <img src="musicfest.img" alt="Music Festival" title="Summer Music Festival" class="image-border" ondblclick="enlargeImage(this)">
-                                <figcaption>Summer Music Festival - Live bands and great vibes.</figcaption>
-                            </figure>
-                        </td>
-                        <td>
-                            <figure>
-                                <img src="art.img" alt="Art Exhibition" title="Local Art Exhibition" class="small-event-image image-border" ondblclick="enlargeImage(this)">
-                                <figcaption>Local Art Exhibition - Showcasing community talent.</figcaption>
-                            </figure>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <figure>
-                                <img src="marathon.img" alt="Community Marathon" title="Annual Charity Marathon" class="image-border" ondblclick="enlargeImage(this)">
-                                <figcaption>Annual Charity Marathon - Running for a cause.</figcaption>
-                            </figure>
-                        </td>
-                        <td>
-                            <figure>
-                                <img src="market.img" alt="Farmers Market" title="Weekly Farmers Market" class="image-border" ondblclick="enlargeImage(this)">
-                                <figcaption>Weekly Farmers Market - Fresh produce and local goods.</figcaption>
-                            </figure>
-                        </td>
-                        <td>
-                            <figure>
-                                <img src="tech_workshop.img" alt="Tech Workshop" title="Community Tech Workshop" class="small-event-image image-border" ondblclick="enlargeImage(this)">
-                                <figcaption>Community Tech Workshop - Learning new skills together.</figcaption>
-                            </figure>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
         </section>
 
         <section id="access-services">
@@ -218,34 +132,23 @@
             <h2>Event Registration</h2>
             <form id="eventRegistrationForm">
                 <div>
-                    <label for="fullName">Full Name:</label>
-                    <input type="text" id="fullName" name="fullName" placeholder="John Doe" required autofocus class="form-input">
+                    <label for="regFullName">Full Name:</label>
+                    <input type="text" id="regFullName" name="fullName" placeholder="John Doe" required autofocus class="form-input">
+                    <span id="regFullNameError" class="error-message-inline hidden"></span>
                 </div>
                 <div>
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" placeholder="john.doe@example.com" required class="form-input">
+                    <label for="regEmail">Email:</label>
+                    <input type="email" id="regEmail" name="email" placeholder="john.doe@example.com" required class="form-input">
+                    <span id="regEmailError" class="error-message-inline hidden"></span>
                 </div>
                 <div>
-                    <label for="eventDate">Preferred Event Date:</label>
-                    <input type="date" id="eventDate" name="eventDate" required class="form-input">
-                </div>
-                <div>
-                    <label for="eventType">Event Type:</label>
-                    <select id="eventType" name="eventType" required class="form-input">
-                        <option value="">Select an Event Type</option>
-                        <option value="community_fair">Community Fair</option>
-                        <option value="music_festival">Music Festival</option>
-                        <option value="art_exhibition">Art Exhibition</option>
-                        <option value="charity_marathon">Charity Marathon</option>
-                        <option value="farmers_market">Farmers Market</option>
-                        <option value="tech_workshop">Tech Workshop</option>
+                    <label for="regEventSelect">Select Event:</label>
+                    <select id="regEventSelect" name="eventToRegister" required class="form-input">
+                        <option value="">Select an Event</option>
                     </select>
+                    <span id="regEventSelectError" class="error-message-inline hidden"></span>
                 </div>
-                <div>
-                    <label for="message">Message (optional):</label>
-                    <textarea id="message" name="message" rows="4" placeholder="Any special requests or comments?" class="form-input"></textarea>
-                </div>
-                <button type="submit" class="action-button">Register for Event</button>
+                <button type="submit" class="action-button" id="registerSubmitButton">Register for Event</button>
             </form>
             <div id="registrationConfirmation" class="form-confirmation hidden">
                 Thank you for registering! Your registration has been received.
@@ -304,7 +207,7 @@
                 <p><strong>Local City Council</strong></p>
                 <p>123 Community Lane</p>
                 <p>Civicville, CA 90210</p>
-                <p>Email: <a href="mailto:jayaganeshkeerthana@gmail.com">info@community.org</a></p>
+                <p>Email: <a href="mailto:info@community.org">info@community.org</a></p>
                 <p>Phone: <a href="tel:+15551234567">(555) 123-4567</a></p>
             </address>
         </section>
@@ -324,7 +227,7 @@
     <div id="confirmationModal" class="modal">
         <div class="modal-content">
             <span class="close-button" onclick="closeModal('confirmationModal')">×</span>
-            <h3>Submission Confirmed!</h3>
+            <h3>Message</h3>
             <p id="confirmationMessage"></p>
             <button onclick="closeModal('confirmationModal')">OK</button>
         </div>
@@ -337,29 +240,456 @@
         </div>
     </div>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <script>
-        let formHasChanges = false;
+        // 1. JavaScript Basics & Setup
+        console.log("Welcome to the Community Portal");
 
+        // Custom message box function to replace alert()
+        function showMessageBox(message, title = "Notification") {
+            const modal = document.getElementById('confirmationModal');
+            const modalTitle = modal.querySelector('h3');
+            const modalMessage = document.getElementById('confirmationMessage');
+            modalTitle.textContent = title;
+            modalMessage.textContent = message;
+            modal.style.display = 'flex';
+        }
+
+        // Mock API Endpoints
+        const MOCK_API_BASE = 'https://api.example.com'; // Placeholder for a real API base
+        const MOCK_API_EVENTS = `${MOCK_API_BASE}/events`;
+        const MOCK_API_REGISTRATIONS = `${MOCK_API_BASE}/registrations`;
+
+        // Function to simulate fetching events from an API
+        async function fetchEventsFromApi() {
+            // Show loading spinner
+            document.getElementById('loadingSpinner').style.display = 'block';
+            console.log("Fetching events..."); // Debugging: Log fetch start
+
+            try {
+                // Simulate network delay using setTimeout
+                await new Promise(resolve => setTimeout(resolve, 1000));
+
+                // In a real application, you would use fetch:
+                // const response = await fetch(MOCK_API_EVENTS);
+                // if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                // const data = await response.json();
+                // return data;
+
+                // For now, return a clone of the local allEvents array
+                return [...allEvents]; // Using spread operator to clone the array
+            } catch (error) {
+                console.error("Error fetching events:", error); // Debugging: Log fetch error
+                showMessageBox(`Failed to load events: ${error.message}`, "Error");
+                return []; // Return empty array on error
+            } finally {
+                // Hide loading spinner
+                document.getElementById('loadingSpinner').style.display = 'none';
+                console.log("Event fetch complete."); // Debugging: Log fetch end
+            }
+        }
+
+        // Function to simulate POSTing registration data to an API
+        async function postRegistrationToApi(registrationData) {
+            console.log("Mock API: Posting registration data:", registrationData); // Debugging: Check payload
+            try {
+                // Simulate network delay
+                await new Promise(resolve => setTimeout(resolve, 1500));
+
+                // In a real application, you would use fetch POST:
+                /*
+                const response = await fetch(MOCK_API_REGISTRATIONS, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(registrationData)
+                });
+                if (!response.ok) {
+                    const errorDetail = await response.json();
+                    throw new Error(`Registration failed: ${errorDetail.message || response.statusText}`);
+                }
+                return await response.json(); // Or just return success status
+                */
+
+                // Simulate success response
+                return { success: true, message: "Registration successful!" };
+            } catch (error) {
+                console.error("API Registration error:", error); // Debugging: Log API error
+                throw new Error(`API call failed: ${error.message}`);
+            }
+        }
+
+        window.onload = async function() {
+            showMessageBox("The page is fully loaded!");
+            // Fetch events asynchronously on page load
+            allEvents = await fetchEventsFromApi();
+            updateEventDisplay(); // Initial display of events
+            populateRegistrationEvents(); // Populate dropdown for registration
+        };
+
+        // 5. Objects and Prototypes
+        // Event Class Definition
+        class Event {
+            constructor(id, name, date, totalSeats, category, imageUrl, description) {
+                this.id = id;
+                this.name = name;
+                this.date = new Date(date); // Convert date string to Date object
+                this.totalSeats = totalSeats;
+                this.registeredSeats = 0; // Initialize registered seats
+                this.category = category;
+                this.imageUrl = imageUrl;
+                this.description = description;
+            }
+
+            // Method to check availability
+            checkAvailability() {
+                return this.totalSeats - this.registeredSeats;
+            }
+
+            // Method to register a user
+            register() {
+                if (this.checkAvailability() > 0) {
+                    this.registeredSeats++; // Use ++ to decrement seat count
+                    return true;
+                }
+                return false;
+            }
+
+            // Method to cancel registration (demonstrates -- operator)
+            cancelRegistration() {
+                if (this.registeredSeats > 0) {
+                    this.registeredSeats--; // Use -- to increment seat count
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        // 2. Syntax, Data Types, and Operators
+        // 6. Arrays and Methods
+        // Initial Event Data (will be overwritten by fetchEventsFromApi on load)
+        let allEvents = [
+            // IMPORTANT: Use forward slashes (/) for paths and ensure correct file extensions (e.g., .jpg, .png, .gif)
+            // Disk image file types (.iso, .dmg, etc.) are NOT supported by web browsers for display.
+            // You can use relative paths like 'images/my-image.jpg' if the image is in a subfolder
+            // named 'images' relative to your HTML file, or full URLs like 'https://example.com/my-image.png'.
+            new Event('e1', 'Annual Summer Concert', '2025-07-15', 100, 'Music', 'https://www.virtualdays.com/wp-content/uploads/2023/06/community-events.jpg', 'Enjoy live music under the stars. Family-friendly event.'),
+            new Event('e2', 'Food Truck Rally', '2025-08-20', 150, 'Food', 'https://st3.depositphotos.com/1037718/18382/i/450/depositphotos_183827744-stock-photo-food-truck-festival.jpg', 'A variety of food trucks, live entertainment, and fun activities.'),
+            new Event('e3', 'Community Art Exhibition', '2025-06-01', 50, 'Art', 'https://th-i.thgim.com/public/incoming/fxiuih/article68968965.ece/alternates/FREE_1200/HA2A2007.JPG', 'Showcasing community talent.'),
+            new Event('e4', 'Charity Marathon', '2025-09-10', 200, 'Sports', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ19-SusW6C7xoWZSmjg5_-hwLvMzalphk5XQ&s', 'Running for a cause.'),
+            new Event('e5', 'Weekly Farmers Market', '2025-05-28', 500, 'Food', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5lST4SxyCyoxzgXNcZvAhqufDk9fiySjYyA&s', 'Fresh produce and local goods.'),
+            new Event('e6', 'Tech Workshop: Web Dev', '2025-07-05', 30, 'Technology', 'https://images.stockcake.com/public/b/5/f/b5fd8cec-afa5-4237-b1e7-f9569d27e14c_large/busy-tech-workshop-stockcake.jpg', 'Learning new skills together.'),
+            new Event('e7', 'Community Fair', '2024-04-20', 300, 'Community', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4RInegObfBOzQRya3EkGx-gdAUi7dTgfS9A&s', 'Fun for all ages!'), // Past event
+            new Event('e8', 'Music Festival', '2025-08-01', 0, 'Music', 'https://www.virtualdays.com/wp-content/uploads/2023/06/community-events.jpg', 'Live bands and great vibes.'), // Full event
+        ];
+
+        // 4. Functions, Scope, Closures, Higher-Order Functions
+        // Function to add a new event (using .push())
+        // Using default parameters for optional values
+        function addEvent(name, date, totalSeats, category, imageUrl = 'https://placehold.co/250x150', description = 'No description provided.') {
+            const newEvent = new Event(
+                `e${allEvents.length + 1}`,
+                name,
+                date,
+                totalSeats,
+                category,
+                imageUrl,
+                description
+            );
+            allEvents.push(newEvent);
+            updateEventDisplay(); // Re-render events
+            populateRegistrationEvents(); // Update registration dropdown
+            showMessageBox(`New event "${newEvent.name}" added successfully!`);
+        }
+
+        // Closure to track total registrations for a category
+        function createCategoryRegistrationTracker() {
+            const registrationsByCategory = {}; // Private variable
+
+            return function(category) {
+                if (!registrationsByCategory[category]) {
+                    registrationsByCategory[category] = 0;
+                }
+                registrationsByCategory[category]++;
+                console.log(`Total registrations for ${category}: ${registrationsByCategory[category]}`);
+                return registrationsByCategory[category];
+            };
+        }
+        const trackCategoryRegistration = createCategoryRegistrationTracker();
+
+        // Helper function to display inline errors
+        function displayInlineError(elementId, message, hide = false) {
+            const errorElement = document.getElementById(elementId);
+            if (errorElement) {
+                errorElement.textContent = message;
+                errorElement.classList.toggle('hidden', hide);
+                const inputElement = document.getElementById(elementId.replace('Error', ''));
+                if (inputElement) {
+                    inputElement.classList.toggle('border-red-500', !hide);
+                }
+            }
+        }
+
+        // 7. DOM Manipulation & 3. Conditionals, Loops
+        // Function to update the event display
+        async function updateEventDisplay(filterCallback = null) {
+            const eventCardsContainer = document.getElementById('eventCardsContainer');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+
+            // Show spinner before processing
+            loadingSpinner.style.display = 'block';
+            $(eventCardsContainer).fadeOut(200, function() { // jQuery fadeOut
+                eventCardsContainer.innerHTML = ''; // Clear existing cards
+
+                let eventsToDisplay = [...allEvents]; // Use spread operator to clone for filtering
+
+                // Apply filter if a callback is provided (Higher-Order Function)
+                if (filterCallback && typeof filterCallback === 'function') {
+                    eventsToDisplay = eventsToDisplay.filter(filterCallback);
+                }
+
+                const today = new Date();
+
+                if (eventsToDisplay.length === 0) {
+                    eventCardsContainer.innerHTML = '<p style="text-align: center; width: 100%; color: #4b5563;">No events found matching your criteria.</p>';
+                } else {
+                    eventsToDisplay.forEach(event => {
+                        // Destructuring to extract event details
+                        const { id, name, date, totalSeats, registeredSeats, category, imageUrl, description } = event;
+
+                        const availableSeats = totalSeats - registeredSeats;
+                        const isPastEvent = date < today;
+                        const isFull = availableSeats <= 0;
+
+                        // 3. Conditionals: Hide past or full events
+                        if (isPastEvent || isFull) {
+                            return; // Skip displaying past or full events
+                        }
+
+                        const eventCard = document.createElement('div');
+                        eventCard.className = 'event-card';
+
+                        eventCard.innerHTML = `
+                            <figure>
+                                <img src="${imageUrl}" alt="${name}" title="${name}" class="image-border">
+                                <figcaption>${name} - ${category}</figcaption>
+                            </figure>
+                            <p>${description}</p>
+                            <p>Date: ${date.toLocaleDateString()}</p>
+                            <p>Seats Available: ${availableSeats}</p>
+                            <button class="action-button register-button" data-event-id="${id}">Register</button>
+                        `;
+
+                        // Use jQuery for event listener on dynamically created buttons
+                        $(eventCard).find('.register-button').on('click', function() {
+                            const eventId = $(this).data('event-id');
+                            registerUser(eventId);
+                        });
+
+                        eventCardsContainer.appendChild(eventCard);
+
+                        console.log(`--- Details for ${name} ---`);
+                        for (const [key, value] of Object.entries(event)) {
+                            console.log(`${key}: ${value}`);
+                        }
+                        console.log('----------------------------');
+                    });
+                }
+                $(eventCardsContainer).fadeIn(200); // jQuery fadeIn
+                loadingSpinner.style.display = 'none'; // Hide spinner after content is ready
+            });
+        }
+
+        // Function to populate the registration form's event select dropdown
+        function populateRegistrationEvents() {
+            const regEventSelect = document.getElementById('regEventSelect');
+            regEventSelect.innerHTML = '<option value="">Select an Event</option>'; // Clear and add default
+
+            const today = new Date();
+            allEvents.forEach(event => {
+                const availableSeats = event.checkAvailability();
+                const isPastEvent = event.date < today;
+                const isFull = availableSeats <= 0;
+
+                if (!isPastEvent && !isFull) {
+                    const option = document.createElement('option');
+                    option.value = event.id;
+                    option.textContent = `${event.name} (${availableSeats} seats left)`;
+                    regEventSelect.appendChild(option);
+                }
+            });
+        }
+
+        // Function to register a user (client-side logic)
+        async function registerUser(eventId) {
+            try {
+                const event = allEvents.find(e => e.id === eventId);
+                // Set a breakpoint here to inspect 'event' object
+                console.log("Attempting to register for event:", event); // Debugging: Log registration attempt
+
+                if (!event) {
+                    throw new Error("Event not found.");
+                }
+
+                if (event.register()) {
+                    // Simulate backend registration
+                    const registrationData = {
+                        eventId: event.id,
+                        eventName: event.name,
+                        registrationDate: new Date().toISOString()
+                    };
+                    const apiResponse = await postRegistrationToApi(registrationData); // AJAX call
+
+                    if (apiResponse.success) {
+                        showMessageBox(`Successfully registered for ${event.name}! Seats left: ${event.checkAvailability()}`, "Registration Success");
+                        trackCategoryRegistration(event.category); // Closure in action
+                        updateEventDisplay(); // Update UI after successful registration
+                        populateRegistrationEvents(); // Update dropdown
+                    } else {
+                        throw new Error(apiResponse.message || "Unknown API error during registration.");
+                    }
+                } else {
+                    showMessageBox(`Sorry, ${event.name} is full or unavailable.`, "Registration Failed");
+                }
+            } catch (error) {
+                console.error("Registration error:", error.message); // Debugging: Log client-side error
+                showMessageBox(`Registration failed: ${error.message}`, "Error");
+            }
+        }
+
+        // 11. Working with Forms & 12. AJAX & Fetch API
+        // Event listener for the main registration form
         const eventRegistrationForm = document.getElementById('eventRegistrationForm');
-        const eventTypeSelect = document.getElementById('eventType');
-        const registrationConfirmationDiv = document.getElementById('registrationConfirmation');
+        eventRegistrationForm.addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent default form submission
 
-        eventRegistrationForm.addEventListener('input', () => { formHasChanges = true; });
-        eventTypeSelect.addEventListener('change', function() { localStorage.setItem('preferredEventType', this.value); });
+            console.log("Form submission initiated."); // Debugging: Log form start
 
-        eventRegistrationForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            const fullName = document.getElementById('fullName').value;
-            const email = document.getElementById('email').value;
-            const eventDate = document.getElementById('eventDate').value;
-            const eventType = eventTypeSelect.value;
+            const fullNameInput = document.getElementById('regFullName');
+            const emailInput = document.getElementById('regEmail');
+            const eventSelect = document.getElementById('regEventSelect');
 
-            registrationConfirmationDiv.innerHTML = `Thank you, <span class="font-bold">${fullName}</span>, for registering for the <span class="font-bold">${eventType.replace(/_/g, ' ')}</span> on <span class="font-bold">${eventDate}</span>! Your registration has been received.`;
-            registrationConfirmationDiv.classList.remove('hidden');
-            this.reset();
-            formHasChanges = false;
+            const fullName = fullNameInput.value.trim();
+            const email = emailInput.value.trim();
+            const selectedEventId = eventSelect.value;
+
+            // Basic client-side validation
+            let isValid = true;
+            if (!fullName) {
+                displayInlineError('regFullNameError', 'Full Name is required.');
+                isValid = false;
+            } else {
+                displayInlineError('regFullNameError', '', true);
+            }
+
+            if (!email || !email.includes('@') || !email.includes('.')) {
+                displayInlineError('regEmailError', 'Please enter a valid email address.');
+                isValid = false;
+            } else {
+                displayInlineError('regEmailError', '', true);
+            }
+
+            if (!selectedEventId) {
+                displayInlineError('regEventSelectError', 'Please select an event.');
+                isValid = false;
+            } else {
+                displayInlineError('regEventSelectError', '', true);
+            }
+
+            if (!isValid) {
+                console.log("Form validation failed."); // Debugging: Log validation failure
+                return;
+            }
+
+            // If validation passes, proceed with mock API registration
+            try {
+                // Find the event object using the selected ID
+                const eventToRegister = allEvents.find(e => e.id === selectedEventId);
+
+                if (!eventToRegister) {
+                    showMessageBox("Selected event not found.", "Error");
+                    return;
+                }
+
+                // Simulate registration on the event object
+                if (eventToRegister.register()) {
+                    // Prepare data for API POST request
+                    const registrationData = {
+                        fullName: fullName,
+                        email: email,
+                        eventId: selectedEventId,
+                        eventName: eventToRegister.name,
+                        registrationDate: new Date().toISOString()
+                    };
+
+                    // Send data to mock API
+                    const apiResponse = await postRegistrationToApi(registrationData); // Set a breakpoint here
+
+                    if (apiResponse.success) {
+                        showMessageBox(`Registration for ${eventToRegister.name} successful!`, "Success");
+                        trackCategoryRegistration(eventToRegister.category); // Update category tracker
+                        updateEventDisplay(); // Refresh event cards
+                        populateRegistrationEvents(); // Refresh registration dropdown
+                        eventRegistrationForm.reset(); // Reset form
+                        document.getElementById('registrationConfirmation').classList.remove('hidden');
+                        setTimeout(() => {
+                            document.getElementById('registrationConfirmation').classList.add('hidden');
+                        }, 3000);
+                        console.log("Form submission successful and API call simulated."); // Debugging: Log success
+                    } else {
+                        throw new Error(apiResponse.message || "API reported an error.");
+                    }
+                } else {
+                    showMessageBox(`Sorry, ${eventToRegister.name} is full or unavailable.`, "Registration Failed");
+                }
+            } catch (error) {
+                console.error("Form submission error:", error); // Debugging: Log error
+                showMessageBox(`Registration failed: ${error.message}`, "Error");
+            }
         });
 
+        // 8. Event Handling: onchange for filter category
+        const filterCategorySelect = document.getElementById('filterCategorySelect');
+        filterCategorySelect.addEventListener('change', () => {
+            const selectedCategory = filterCategorySelect.value;
+            const searchTerm = document.getElementById('searchEventInput').value.toLowerCase();
+            updateEventDisplay((event) => {
+                const matchesCategory = selectedCategory === "" || event.category === selectedCategory;
+                const matchesSearch = searchTerm === "" || event.name.toLowerCase().includes(searchTerm) || event.description.toLowerCase().includes(searchTerm);
+                return matchesCategory && matchesSearch;
+            });
+        });
+
+        // 8. Event Handling: keydown for quick search by name
+        const searchEventInput = document.getElementById('searchEventInput');
+        searchEventInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                const selectedCategory = document.getElementById('filterCategorySelect').value;
+                const searchTerm = searchEventInput.value.toLowerCase();
+                updateEventDisplay((event) => {
+                    const matchesCategory = selectedCategory === "" || event.category === selectedCategory;
+                    const matchesSearch = searchTerm === "" || event.name.toLowerCase().includes(searchTerm) || event.description.toLowerCase().includes(searchTerm);
+                    return matchesCategory && matchesSearch;
+                });
+            }
+        });
+
+        // 14. jQuery Integration: Use jQuery for filter button click
+        // Original: const applyFilterButton = document.getElementById('applyFilterButton');
+        // applyFilterButton.addEventListener('click', ...);
+        $('#applyFilterButton').on('click', function() {
+            const selectedCategory = $('#filterCategorySelect').val();
+            const searchTerm = $('#searchEventInput').val().toLowerCase();
+            updateEventDisplay((event) => {
+                const matchesCategory = selectedCategory === "" || event.category === selectedCategory;
+                const matchesSearch = searchTerm === "" || event.name.toLowerCase().includes(searchTerm) || event.description.toLowerCase().includes(searchTerm);
+                return matchesCategory && matchesSearch;
+            });
+            // jQuery fadeIn/fadeOut for event cards is handled within updateEventDisplay
+        });
+
+
+        // Existing functions (modified to use new elements/classes if needed)
         function validatePhoneNumber() {
             const phoneNumberInput = document.getElementById('phoneNumber');
             const phoneError = document.getElementById('phoneError');
@@ -398,22 +728,18 @@
         function showFeedbackConfirmation() {
             const feedbackMessage = document.getElementById('feedbackMessage').value;
             const feedbackEventType = document.getElementById('feedbackEventType').value;
-            const confirmationModal = document.getElementById('confirmationModal');
-            const confirmationMessage = document.getElementById('confirmationMessage');
-
+            
             if (feedbackEventType === "") {
-                confirmationMessage.textContent = "Please select an event type for your feedback.";
+                showMessageBox("Please select an event type for your feedback.", "Validation Error");
             } else if (feedbackMessage.trim() === "") {
-                confirmationMessage.textContent = "Please enter your feedback message.";
+                showMessageBox("Please enter your feedback message.", "Validation Error");
             } else {
-                confirmationMessage.textContent = `Thank you for your feedback on the ${feedbackEventType.replace(/_/g, ' ')}! We appreciate your input.`;
+                showMessageBox(`Thank you for your feedback on the ${feedbackEventType.replace(/_/g, ' ')}! We appreciate your input.`, "Feedback Submitted");
                 document.querySelector('#feedback-form form').reset();
                 document.getElementById('charCount').textContent = '0 characters';
                 document.getElementById('eventFeeDisplay').classList.add('hidden');
-                document.getElementById('phoneError').classList.add('hidden');
                 document.getElementById('phoneNumber').classList.remove('border-red-500');
             }
-            confirmationModal.style.display = 'flex';
         }
 
         function enlargeImage(imgElement) {
@@ -437,6 +763,7 @@
             document.getElementById('videoStatus').classList.remove('hidden');
         }
 
+        // Event listener for beforeunload to check for unsaved form changes
         window.addEventListener('beforeunload', function(event) {
             const formInputs = eventRegistrationForm.querySelectorAll('input, select, textarea');
             let hasInput = false;
@@ -446,16 +773,16 @@
                     break;
                 }
             }
-            if (hasInput && registrationConfirmationDiv.classList.contains('hidden')) {
+            if (hasInput && document.getElementById('registrationConfirmation').classList.contains('hidden')) {
                 event.preventDefault();
-                event.returnValue = '';
+                event.returnValue = ''; // Standard for showing a confirmation dialog
             }
         });
 
         document.addEventListener('DOMContentLoaded', function() {
             const savedEventType = localStorage.getItem('preferredEventType');
             if (savedEventType) {
-                eventTypeSelect.value = savedEventType;
+                document.getElementById('feedbackEventType').value = savedEventType;
             }
         });
 
@@ -465,7 +792,7 @@
             const preferencesClearedMessage = document.getElementById('preferencesClearedMessage');
             preferencesClearedMessage.classList.remove('hidden');
             setTimeout(() => { preferencesClearedMessage.classList.add('hidden'); }, 3000);
-            eventTypeSelect.value = "";
+            document.getElementById('feedbackEventType').value = "";
         }
 
         function findNearbyEvents() {
